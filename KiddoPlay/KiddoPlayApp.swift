@@ -6,12 +6,26 @@
 //
 
 import SwiftUI
-
+import Firebase
 @main
 struct KiddoPlayApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+
+    @StateObject private var appState = AppState()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            switch appState.flow {
+            case .welcome:
+                WelcomeView()
+                    .environmentObject(appState)
+            case .guest:
+                HomeView()
+                    .environmentObject(appState)
+
+            case .loggedIn:
+                HomeView()
+                    .environmentObject(appState)
+            }
         }
     }
 }
