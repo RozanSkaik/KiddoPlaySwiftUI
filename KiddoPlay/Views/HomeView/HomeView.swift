@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var appState: AppState
     @State private var viewModel = HomeViewModel()
 
     var body: some View {
@@ -37,7 +36,7 @@ struct HomeView: View {
                     .ignoresSafeArea(edges: .top)
                 }
                 .padding(.horizontal,30)
-                .padding(.vertical,15)
+                .padding(.vertical,8)
 
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -55,6 +54,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
-        .environmentObject(AppState())
 }
 

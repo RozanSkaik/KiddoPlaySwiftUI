@@ -129,7 +129,6 @@
 				6445A8542EE4A94F002BBEBE /* KiddoPlay */,
 				6445A8622EE4A952002BBEBE /* KiddoPlayTests */,
 				6445A86C2EE4A952002BBEBE /* KiddoPlayUITests */,
-				64848D552F02FC580083A5FA /* Frameworks */,
 				6445A8532EE4A94F002BBEBE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -142,13 +141,6 @@
 				6445A8692EE4A952002BBEBE /* KiddoPlayUITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		64848D552F02FC580083A5FA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

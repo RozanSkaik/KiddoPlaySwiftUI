@@ -12,6 +12,7 @@ struct KiddoPlayApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
     @StateObject private var appState = AppState()
+    
     var body: some Scene {
         WindowGroup {
             switch appState.flow {
@@ -19,11 +20,11 @@ struct KiddoPlayApp: App {
                 WelcomeView()
                     .environmentObject(appState)
             case .guest:
-                HomeView()
+                MainTabView()
                     .environmentObject(appState)
 
             case .loggedIn:
-                HomeView()
+                MainTabView()
                     .environmentObject(appState)
             }
         }
