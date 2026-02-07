@@ -37,11 +37,13 @@ Custom Validation Layer
 ## ✅ Implemented
 - Login & Sign Up with Firebase
 - Clean MVVM structure
+- Use App state for navigating
 - Reusable validation system (name, email, password, confirm password)
 - Field-level error handling
 - Disabled actions for invalid input
 - Loading states & error handling
 - Reusable custom SwiftUI components
+- Home View with TabView
 
 ## 🚧 In Progress
 - Learning modules
