@@ -36,7 +36,7 @@ struct HomeView: View {
                     .ignoresSafeArea(edges: .top)
                 }
                 .padding(.horizontal,30)
-                .padding(.vertical,8)
+                .padding(.vertical,5)
 
             }
             .navigationBarTitleDisplayMode(.inline)

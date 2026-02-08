@@ -54,8 +54,8 @@ struct MainTabView: View {
     private func tabView(for tab: TabItem) -> some View {
         switch tab {
         case .home: HomeView()
-        case .trophie: HomeView()
-        case .profile: HomeView()
+        case .trophie: TrophieView()
+        case .profile: ProfileView()
         }
     }
 }
