@@ -12,7 +12,14 @@ struct CustomSegmentView: View {
 
     var body: some View {
         VStack {
-            Picker("Choose an Option", selection: $selectedTag) {
+            Picker("Choose an Option", selection: Binding(
+                get: { selectedTag },
+                set: { newValue in
+                    withAnimation(.easeInOut) {
+                        selectedTag = newValue
+                    }
+                }
+            )) {
                 Text("Existing").tag(0)
                 Text("New").tag(1)
             }

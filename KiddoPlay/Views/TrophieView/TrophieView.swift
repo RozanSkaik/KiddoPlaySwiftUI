@@ -9,7 +9,14 @@ import SwiftUI
 
 struct TrophieView: View {
     var body: some View {
-        Text("Trophie View")
+        ZStack {
+            Image("TrophieBg")
+                .resizable()
+                .ignoresSafeArea()
+            VStack{
+                Image("DailyStarsTitle")
+            }
+        }
     }
 }
 

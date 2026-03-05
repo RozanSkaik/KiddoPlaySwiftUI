@@ -7,12 +7,57 @@
 
 import SwiftUI
 
-struct CustomDialog: View {
+struct CustomDialog<Content: View>: View {
+    let content: Content
+    let onDismiss: () -> Void
+
+    @State private var animate = false
+
+    init(onDismiss: @escaping () -> Void,
+         @ViewBuilder content: () -> Content) {
+        self.content = content()
+        self.onDismiss = onDismiss
+    }
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            // Background
+            Color.black.opacity(animate ? 0.35 : 0)
+                .ignoresSafeArea()
+                .onTapGesture { dismiss() }
+
+            // Dialog
+            content
+                .padding(24)
+                .background(.ultraThinMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
+                .shadow(color: .black.opacity(0.25), radius: 30, y: 20)
+                .scaleEffect(animate ? 1 : 0.85)
+                .opacity(animate ? 1 : 0)
+                .offset(y: animate ? 0 : 20)
+        }
+        .onAppear {
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                animate = true
+            }
+        }
+    }
+
+    private func dismiss() {
+        withAnimation(.easeInOut(duration: 0.2)) {
+            animate = false
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            onDismiss()
+        }
     }
 }
 
 #Preview {
-    CustomDialog()
+    CustomDialog(onDismiss: {
+
+    }, content: {
+        
+    })
 }

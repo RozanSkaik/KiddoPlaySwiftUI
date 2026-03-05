@@ -16,7 +16,6 @@ final class SignUpViewModel {
     var password = ""
     var confirmPassword = ""
 
-    // Field-level errors
     var nameError: String?
     var emailError: String?
     var passwordError: String?
@@ -32,13 +31,11 @@ final class SignUpViewModel {
         !confirmPassword.isEmpty
     }
 
-    // track success
     var didSignUp: Bool = false
 
     func signUp() async {
         clearErrors()
 
-        // Call validator
         let validation = Validator.SignUp.validate(
             name: name,
             email: email,
@@ -46,18 +43,15 @@ final class SignUpViewModel {
             confirmPassword: confirmPassword
         )
 
-        // Assign named errors
         nameError = validation.nameError
         emailError = validation.emailError
         passwordError = validation.passwordError
         confirmPasswordError = validation.confirmPasswordError
 
-        // Stop if invalid
         guard validation.isValid else { return }
 
-        // Proceed with API
         isLoading = true
-        defer { isLoading = false } // Hide loader after excute all operations
+        defer { isLoading = false }
 
         do {
             _ = try await AuthenticationManager.shared
@@ -66,7 +60,6 @@ final class SignUpViewModel {
                     password: password,
                     name: name
                 )
-            // ✅ Mark as success
             didSignUp = true
         } catch {
             generalError = error.localizedDescription

@@ -33,30 +33,57 @@ func tabIcon(for tab: TabItem, selectedTab: TabItem) -> some View {
         .renderingMode(.original)
 }
 
-
 struct MainTabView: View {
     @EnvironmentObject var appState: AppState
     @State private var selectedTab: TabItem = .home
+    @State private var showTrophiePopup = false
+    @State private var previousTab: TabItem = .home
 
     var body: some View {
-        TabView(selection: $selectedTab) {
-            ForEach(TabItem.allCases, id: \.self) { tab in
-                tabView(for: tab)
-                    .tabItem {
-                        tabIcon(for: tab, selectedTab: selectedTab)
-                    }
-                    .tag(tab)
+        ZStack {
+            TabView(selection: $selectedTab) {
+                ForEach(TabItem.allCases, id: \.self) { tab in
+                    tabView(for: tab)
+                        .tabItem {
+                            tabIcon(for: tab, selectedTab: selectedTab)
+                        }
+                        .tag(tab)
+                }
+            }
+            .blur(radius: showTrophiePopup ? 6 : 0)
+            .animation(.easeInOut(duration: 0.2), value: showTrophiePopup)
+
+            if showTrophiePopup {
+                CustomDialog {
+                    dismissTrophie()
+                } content: {
+                    TrophieView()
+                }
+                .zIndex(1)
+            }
+        }
+        .onChange(of: selectedTab) { _, newValue in
+            if newValue == .trophie {
+                showTrophiePopup = true
+            } else {
+                previousTab = newValue
             }
         }
     }
 
-    @ViewBuilder
-    private func tabView(for tab: TabItem) -> some View {
-        switch tab {
-        case .home: HomeView()
-        case .trophie: TrophieView()
-        case .profile: ProfileView()
-        }
+    private func dismissTrophie() {
+        showTrophiePopup = false
+        selectedTab = previousTab
+    }
+}
+
+
+@ViewBuilder
+private func tabView(for tab: TabItem) -> some View {
+    switch tab {
+    case .home: HomeView()
+    case .trophie: Color.clear
+    case .profile: ProfileView()
     }
 }
 

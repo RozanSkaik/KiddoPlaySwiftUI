@@ -28,7 +28,7 @@ struct AuthView: View {
                         SignUpView()
                             .transition(.move(edge: .leading).combined(with: .opacity))
                     }
-                }.animation(.easeInOut, value: selectedTag)
+                }
             }
         }
     }

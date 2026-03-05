@@ -18,13 +18,12 @@ final class LoginViewModel{
 
     var isLoading = false
     var generalError: String?
-    
+
     var isFormValid: Bool {
         !email.isEmpty &&
         !password.isEmpty
     }
 
-    // track success
     var didLogin: Bool = false
 
     func login() async{
@@ -49,7 +48,6 @@ final class LoginViewModel{
                     email: email,
                     password: password
                 )
-            // ✅ Mark as success
             didLogin = true
         } catch {
             generalError = error.localizedDescription

@@ -4,16 +4,15 @@ import Combine
 
 
 enum AppFlowState {
-    case welcome       // first-time or not logged in
-    case guest         // using the app as guest
-    case loggedIn      // authenticated user
+    case welcome
+    case guest
+    case loggedIn
 }
 
 class AppState: ObservableObject {
     @Published var flow: AppFlowState = .welcome
 
     init() {
-        // Load initial state
         if UserDefaults.standard.bool(forKey: "isLoggedIn") {
             flow = .loggedIn
         } else if UserDefaults.standard.bool(forKey: "isGuest") {
