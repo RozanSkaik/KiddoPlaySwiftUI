@@ -22,7 +22,8 @@ struct CustomDialog<Content: View>: View {
     var body: some View {
         ZStack {
             // Background
-            Color.black.opacity(animate ? 0.35 : 0)
+            Image("HomeBg").resizable().ignoresSafeArea()
+//                .opacity(animate ? 0.35 : 0)
                 .ignoresSafeArea()
                 .onTapGesture { dismiss() }
 
