@@ -15,18 +15,18 @@ struct KiddoPlayApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            switch appState.flow {
-//            case .welcome:
+            switch appState.flow {
+            case .welcome:
                 WelcomeView()
                     .environmentObject(appState)
-//            case .guest:
-//                MainTabView()
-//                    .environmentObject(appState)
-//
-//            case .loggedIn:
-//                MainTabView()
-//                    .environmentObject(appState)
-//            }
+            case .guest:
+                MainTabView()
+                    .environmentObject(appState)
+
+            case .loggedIn:
+                MainTabView()
+                    .environmentObject(appState)
+            }
         }
     }
 }

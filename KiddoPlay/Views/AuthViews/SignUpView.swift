@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
+    @EnvironmentObject var appState: AppState
     @State var viewModel = SignUpViewModel()
 
     var body: some View{
@@ -41,12 +42,11 @@ struct SignUpView: View {
                 })
 
                 .padding(.horizontal,60)
-//                .padding(.vertical,10)
-                .navigationDestination(isPresented: $viewModel.didSignUp) {
-                    HomeView()
-                }
             }
         }.padding(50)
+        .onChange(of: viewModel.didSignUp) { _, didSignUp in
+            if didSignUp { appState.login() }
+        }
             .background(Image("loginBg")
                 .resizable()
                 .scaledToFill()

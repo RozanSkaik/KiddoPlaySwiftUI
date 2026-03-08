@@ -9,7 +9,13 @@ import SwiftUI
 
 @MainActor
 @Observable
-final class LoginViewModel{
+final class LoginViewModel {
+    private let service: AuthService
+
+    init(service: AuthService = AuthenticationManager.shared) {
+        self.service = service
+    }
+
     var email = ""
     var password = ""
 
@@ -43,11 +49,10 @@ final class LoginViewModel{
         defer { isLoading = false }
 
         do {
-            _ = try await AuthenticationManager.shared
-                .loginWithEmail(
-                    email: email,
-                    password: password
-                )
+            _ = try await service.loginWithEmail(
+                email: email,
+                password: password
+            )
             didLogin = true
         } catch {
             generalError = error.localizedDescription

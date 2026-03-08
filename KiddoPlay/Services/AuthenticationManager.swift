@@ -7,7 +7,12 @@
 import FirebaseAuth
 import Foundation
 
-class AuthenticationManager{
+protocol AuthService {
+    func createUserAccount(withEmail email: String, password: String, name: String) async throws -> UserInfo
+    func loginWithEmail(email: String, password: String) async throws -> UserInfo
+}
+
+class AuthenticationManager: AuthService {
     static let shared = AuthenticationManager()
 
     private init () {}

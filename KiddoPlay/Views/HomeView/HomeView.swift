@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var viewModel = HomeViewModel()
+    @EnvironmentObject var appState: AppState
+
 
     var body: some View {
         NavigationStack {
@@ -44,6 +46,7 @@ struct HomeView: View {
                 AppNavigationToolbar(
                     score: 12,
                     onMenuTap: {
+                        appState.logout()
                         print("Open menu")
                     }
                 )

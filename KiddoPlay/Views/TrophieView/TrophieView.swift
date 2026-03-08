@@ -10,12 +10,12 @@ import SwiftUI
 struct TrophieView: View {
     var body: some View {
         ZStack {
-            Image("TrophieBg")
-                .resizable()
-                .ignoresSafeArea()
-            VStack{
+//            Image("TrophieBg")
+//                .resizable()
+//                .ignoresSafeArea()
+//            VStack{
                 Image("DailyStarsTitle")
-            }
+//            }
         }
     }
 }

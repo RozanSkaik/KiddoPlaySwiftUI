@@ -11,6 +11,12 @@ import SwiftUI
 @Observable
 final class SignUpViewModel {
 
+    private let service: AuthService
+
+    init(service: AuthService = AuthenticationManager.shared) {
+        self.service = service
+    }
+
     var name = ""
     var email = ""
     var password = ""
@@ -54,12 +60,11 @@ final class SignUpViewModel {
         defer { isLoading = false }
 
         do {
-            _ = try await AuthenticationManager.shared
-                .createUserAccount(
-                    withEmail: email,
-                    password: password,
-                    name: name
-                )
+            _ = try await service.createUserAccount(
+                withEmail: email,
+                password: password,
+                name: name
+            )
             didSignUp = true
         } catch {
             generalError = error.localizedDescription

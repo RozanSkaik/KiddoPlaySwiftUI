@@ -16,4 +16,10 @@ struct UserInfo{
         self.email = user.email
         self.displayName = user.displayName
     }
+
+    init(uid: String?, email: String?, displayName: String?) {
+        self.uid = uid
+        self.email = email
+        self.displayName = displayName
+    }
 }

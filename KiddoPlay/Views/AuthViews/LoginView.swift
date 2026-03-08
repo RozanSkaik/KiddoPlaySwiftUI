@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LoginView: View{
+    @EnvironmentObject var appState: AppState
     @State private var viewModel = LoginViewModel()
 
     var body: some View{
@@ -54,10 +55,6 @@ struct LoginView: View{
             })
 
             .padding(.horizontal,60)
-//                .padding(.vertical,10)
-            .navigationDestination(isPresented: $viewModel.didLogin) {
-                HomeView()
-            }
             SocialLoginView()
 
 
@@ -66,6 +63,9 @@ struct LoginView: View{
             .resizable()
             .scaledToFill()
             .offset(x: -12))
+        .onChange(of: viewModel.didLogin) { _, didLogin in
+            if didLogin { appState.login() }
+        }
     }
 }
 struct SocialLoginView: View{
