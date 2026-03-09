@@ -38,7 +38,7 @@ struct ProfileView: View {
                         }
                     }
 
-                    PrimaryButton(title: "Log Out") {
+                    PrimaryButton(title: "LogOut") {
                         viewModel.logout()
                     }
                     .padding(.horizontal, 80)
